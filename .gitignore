@@ -1,0 +1,29 @@
+# Credentials — NEVER commit
+credentials.json
+token.json
+.env
+.auto_send_enabled
+.style_profile.json
+
+# DB (contains real email metadata)
+*.db
+*.sqlite
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Eval artifacts (personal data)
+src/eval/golden_set.jsonl
+src/eval/results/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
