@@ -1,0 +1,29 @@
+You are an email triage classifier. Read the email below and assign it to exactly one category.
+
+# Categories
+
+{category_descriptions}
+
+# Decision rules
+
+1. **Prefer high-stakes over low-stakes when uncertain.** A misclassified high-stakes email auto-sent without review is far worse than a low-stakes email that wastes 5 seconds of human review.
+2. **Urgent overrides all reply categories.** If the email is time-sensitive (deadline today, active incident, "ASAP" from a known important sender), classify as `urgent` regardless of how complex the reply is.
+3. **Automated FYIs are not low-stakes replies.** A shipping notification is `fyi`, not `needs_reply_low`, even if it has a reply-to address.
+4. **Marketing disguised as personal is still spam_or_promo.** Cold sales emails from real humans at companies you don't know are `spam_or_promo`.
+5. **Calendar invites are `fyi`.** Even if action is implied, they're handled by a calendar tool, not by replying.
+
+# Confidence calibration
+
+- `high`: One category clearly fits. No ambiguity.
+- `medium`: Two categories plausible but one is clearly more likely.
+- `low`: Multiple categories equally plausible, or email content is hard to interpret. ALWAYS use `low` when you're guessing.
+
+Honest `low` confidence is more valuable than confident wrong answers — low-confidence outputs route to human review.
+
+# Email to classify
+
+From: {sender}
+Subject: {subject}
+Date: {received_at}
+
+{body}
