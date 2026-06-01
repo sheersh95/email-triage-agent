@@ -193,7 +193,3 @@ If asked to walk through this:
 - **Confidence-aware routing** — the classifier's own uncertainty becomes part of the safety boundary.
 
 ---
-
-## License
-
-MIT
